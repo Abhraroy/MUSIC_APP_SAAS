@@ -1,13 +1,14 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import ColourfulText from "@/components/ui/colourful-text";
-import SwiperCaraousel from "../Utility_Component/SwiperCaraousel";
+import SwiperCaraousel from "../../Utility_Component/SwiperCaraousel";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import CountDown from "../Utility_Component/CountDown";
+import CountDown from "../../Utility_Component/CountDown";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "@/components/ui/moving-border";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { BiAlarm } from "react-icons/bi";
+import { SiApplemusic } from "react-icons/si";
 
 function HomePage() {
   const words = "Upcoming Song Countdown";
@@ -39,8 +40,8 @@ function HomePage() {
       <AuroraBackground className="bg-black h-fit">
         <div className="bg-transparent w-[100dvw] flex flex-col gap-[1.5rem] p-[1rem] items-center border-box ">
             
-          <div className="bg-red-200 w-full h-[70px]">
-          {/* <FloatingNav navItems={navItems} /> */}
+          <div className="bg-red-200 w-full h-[70px] text-4xl flex items-center just">
+          <SiApplemusic />
           </div>
           <span className="w-full flex items-center justify-center text-2xl">
             <ColourfulText text=" — More Than Just Music." />

@@ -14,7 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import AlbumCard from "../Utility_Component/AlbumCard";
+import AlbumCard from "../../Utility_Component/AlbumCard";
 
 
 
@@ -92,7 +92,7 @@ function CollectionPage() {
         <Carousel className="h-fit box-border">
           <CarouselContent>
             <CarouselItem className="basis-1/2">
-              <AlbumCard />
+            <AlbumCard />
             </CarouselItem>
             <CarouselItem className="basis-1/2">
               <AlbumCard />
