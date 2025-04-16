@@ -4,8 +4,8 @@ import WaveSurfer from "wavesurfer.js";
 import { IoPauseCircle } from "react-icons/io5";
 import { IoPlayCircle } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
-import useStore from "../utils/ZustandStore";
-import { formatTime } from "../utils/TimeFormat";
+import useStore from "../Utils/ZustandStore.js";
+import { formatTime } from "../utils/TimeFormat.js";
 
 function SingleMusicCard() {
   const { Play, setPlay,Duration,setDuration,CurrentTime,setCurrentTime} = useStore();
@@ -57,7 +57,7 @@ function SingleMusicCard() {
 
   return (
     <>
-      <div className="flex md:hidden w-[100vw] h-[100vh] bg-[#4b4a54] m-0 p-0 box-border justify-center items-center">
+      <div className="flex md:hidden w-[100dvw] h-[100dvh] bg-[#4b4a54] m-0 p-0 box-border justify-center items-center">
         <div className="w-[90%] h-[90%] bg-[#a3cfcd]/10 backdrop-blur-md shadow-xl rounded-[30px] flex flex-col justify-between box-border">
           <div className="w-[100%] p-[1.5rem] text-5xl">
             <IoArrowBackCircle />
