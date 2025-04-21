@@ -19,11 +19,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import ExpandableCardDemo from "@/components/expandable-card-demo-standard";
 import { LayoutGrid } from "@/components/ui/layout-grid";
+import useStore from "@/Component/utils/ZustandStore";
 function Collection() {
+
+  const {track,setTrack} = useStore()
+
+
+
+  const handleTrack = (url:String)=>{
+    setTrack(url)
+  }
+
+
   return (
     <>
       <div className="w-full h-[3rem] text-3xl text-white bg-green-900 shrink-0 "></div>
-      <div className="w-full h-[48%] shrink-0 border-box flex flex-row gap-[0.5rem] overflow-y-hidden">
+      <div className="w-full h-[38%] shrink-0 border-box flex flex-row gap-[0.5rem] overflow-y-hidden">
         <Swiper
           modules={[
             Navigation,
@@ -62,15 +73,15 @@ function Collection() {
           className="text-black flex items-center justify-center h-full w-full"
         >
           <SwiperSlide className="p-[3px] ">
-            <WobbleCard containerClassName=" shrink-0 w-[300px] h-full  bg-white/40 backdrop-blur-3xl"></WobbleCard>{" "}
+            <WobbleCard containerClassName=" shrink-0 w-[250px] h-full  bg-white/40 backdrop-blur-3xl"></WobbleCard>{" "}
           </SwiperSlide>
         </Swiper>
       </div>
       <div className=" w-full flex flex-row flex-wrap" >
-        <div className=" basis-1/3 h-[150px] border-box p-[10px] border-r-[2px] border-white " >
-         <AnimatedM
-          </div>
+        <div className=" basis-1/3 h-[100px] border-box p-[10px] border-r-[2px] border-white bg-amber-300 " onClick={()=>handleTrack} ></div>
+       
       </div>
+      <div className=" w-full h-[50px] shrink-0 " ></div>
     </>
   );
 }

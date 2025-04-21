@@ -1,11 +1,27 @@
 import Desktophome from "./HomePage/Desktophome"
-
-
+import {BrowserRouter} from "react-router-dom"
+import { Route ,Routes } from "react-router-dom"
+import Home from "./DesktopComponent/Home"
+import Collection from "./DesktopComponent/Collection"
 
 function Desktop() {
   return (
    <>
-   <Desktophome />
+   <BrowserRouter>
+    <Routes>
+      <Route path="/home" element={<Desktophome MainElement = {<Home />} />} />
+      <Route path="/" element={<Desktophome MainElement = {<Home />} />} />
+      <Route path="/collection" element={<Desktophome MainElement = {<Collection />} />} />
+    </Routes>
+
+
+
+
+
+
+
+   </BrowserRouter>
+   
    </>
   )
 }

@@ -86,7 +86,8 @@ function Home() {
              
               
               </div>
-              <div className="w-full h-[38%]  bg-green-200 shrink-0 " ></div>     
+              <div className="w-full h-[38%]  bg-green-200 shrink-0 " ></div>
+              <div className=" w-full h-[50px] shrink-0 " ></div>     
     </>
   )
 }
