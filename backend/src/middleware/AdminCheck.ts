@@ -1,3 +1,5 @@
+//Middleware for checking if admin or not
+
 import { Request,Response,NextFunction } from "express";
 
 

@@ -1,6 +1,13 @@
+
+// multer configuration for uploading files
+
 import multer from "multer"
 
-const upload = multer({dest:"/uploads"})
+const upload = multer({dest:"/uploads"}) //temporary storage creation
+
+
+
+//  uploadfile 
 
 const uploadFiles = upload.fields([
     {name:'audio',maxCount:1},

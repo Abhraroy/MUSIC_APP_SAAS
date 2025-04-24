@@ -4,7 +4,10 @@ import app from "./server.js"
 const Port = process.env.PORT
 
 
-//Starting the backend server
+
+
+
+//Connecting to database and Starting the backend server
 
 DB_connect().then(()=>{
     console.log("PORT:", Port);

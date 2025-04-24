@@ -1,5 +1,5 @@
 import passport from "passport";
-import {Strategy as GoogleStrategy} from "passport-google-oauth2"
+import {Strategy as GoogleStrategy} from "passport-google-oauth2" // googleStrategy as it is google oauth
 import {userModel} from "../Models/DB_MODEL.js"
 
 
@@ -12,9 +12,10 @@ export const configurePassport = async()=>{
 
 
 
-    console.log("✅ CALLBACK URL:", process.env.OAUTH_CALLBACK_URL);
+console.log("✅ CALLBACK URL:", process.env.OAUTH_CALLBACK_URL);
 
 
+// setting the strategy configuration for passport
 
     passport.use(new GoogleStrategy({
         clientID: process.env.OAUTH_CLIENT_ID || "",
@@ -23,7 +24,7 @@ export const configurePassport = async()=>{
     },(accessToken:string,refreshToken:string,profile:any,done:any)=>{
         (async()=>{
             try {
-                const user = await userModel.findOne({email: profile.emails[0].value})
+                const user = await userModel.findOne({email: profile.emails[0].value}) // searching databse to find if the user already exists in the database
                 if(!user){
                    const user = await userModel.create({
                         googleId:profile.id,
@@ -31,6 +32,7 @@ export const configurePassport = async()=>{
                         email:profile.emails[0].value,
                         avatar:profile.photos[0].value
                     });
+                    user.save()
                 }
                 else if (!user.googleId) {
                     user.googleId = profile.id;
@@ -44,9 +46,9 @@ export const configurePassport = async()=>{
     }))
 
 
-    passport.serializeUser((user:any,done)=>done(null,user._id))
+    passport.serializeUser((user:any,done)=>done(null,user._id)) //serializing users
 
-    passport.deserializeUser(async(id:any,done)=>{
+    passport.deserializeUser(async(id:any,done)=>{   // deserializing user to get the data out of it 
         try {
             const user = await userModel.findById(id);
             done(null, user); // makes `req.user` available in routes

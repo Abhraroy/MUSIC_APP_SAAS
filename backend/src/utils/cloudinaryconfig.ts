@@ -2,6 +2,10 @@
 import {v2 as cloudinary} from "cloudinary"
 
 
+
+
+// Cloudinary API configuration
+
 const cloudinaryConfig = ()=>{
     cloudinary.config({
         cloud_name:process.env.CLOUDINARY_CLOUD_NAME,

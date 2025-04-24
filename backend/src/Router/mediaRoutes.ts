@@ -1,9 +1,15 @@
 import {Router} from "express"
+
+//importing database models for media
+
 import { mediaModel } from "../Models/DB_MODEL.js"
 
 
 const mediaRoute = Router()
 
+
+
+// route for getting all the media
 
 mediaRoute.get("/",async(req,res)=>{
     try {
@@ -15,6 +21,9 @@ mediaRoute.get("/",async(req,res)=>{
     }
     
 })
+
+
+// route for playing a perticuler song
 
 mediaRoute.get("/getMusic/:id",async(req,res)=>{
     try {
