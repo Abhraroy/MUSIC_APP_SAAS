@@ -17,20 +17,16 @@ import {useLocation} from  "react-router-dom"
 
 function Home() {
 
-  const location = useLocation();
-
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    if (params.get("loggedIn")) {
-      axios.get("https://music-app-saas.onrender.com/api/v1/user/currentuser", {
-        withCredentials: true
-      }).then((res) => {
-        console.log("User:", res.data);
-      }).catch((err) => {
-        console.error("Not authenticated:", err);
+    axios.get("/user/current-user", { withCredentials: true })
+      .then(res => {
+        console.log("User:", res.data.user);
+      })
+      .catch(err => {
+        console.log("Not logged in");
       });
-    }
-  }, [location]);
+  }, []);
+  
 
 
 
