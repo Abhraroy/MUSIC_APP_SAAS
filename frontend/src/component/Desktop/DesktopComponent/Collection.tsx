@@ -17,8 +17,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css/scrollbar";
 // import "swiper/css/effect-cards";
 import "swiper/css/bundle";
-
-import useStore from "@/Component/utils/ZustandStore";
+import useStore from "../../utils/ZustandStore"
 function Collection() {
 
   const {setTrack} = useStore()

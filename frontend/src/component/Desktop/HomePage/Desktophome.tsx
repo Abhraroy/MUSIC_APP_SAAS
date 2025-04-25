@@ -1,4 +1,5 @@
-import { formatTime } from "@/Component/utils/TimeFormat";
+
+import {formatTime} from "../../utils/TimeFormat"
 import { useEffect, useRef} from "react";
 import WaveSurfer from "wavesurfer.js";
 import useStore from "../../utils/ZustandStore";
