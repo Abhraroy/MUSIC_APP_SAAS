@@ -1,6 +1,5 @@
 import { SparklesCore } from "@/components/ui/sparkles"
 import { Button } from "@/components/ui/moving-border";
-import axios from "axios"
 import "./Landing.css"
 
 function Landing() {

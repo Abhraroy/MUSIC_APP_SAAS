@@ -1,10 +1,10 @@
-import { useEffect, useRef,useState} from "react";
+import { useEffect, useRef} from "react";
 import WaveSurfer from "wavesurfer.js";
 
 import { IoPauseCircle } from "react-icons/io5";
 import { IoPlayCircle } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
-import useStore from "../Utils/ZustandStore.js";
+import useStore from "../utils/ZustandStore.js";
 import { formatTime } from "../utils/TimeFormat.js";
 
 function SingleMusicCard() {
@@ -31,12 +31,14 @@ function SingleMusicCard() {
         // normalize:true
       });
     waveFormRef.current?.on('ready',()=>{
-        const totalSecond = waveFormRef.current?.getDuration()
-        setDuration(formatTime(totalSecond))
+        const totalSecond = waveFormRef.current?.getDuration();
+        if (totalSecond !== undefined) {
+          setDuration(formatTime(totalSecond));
+        }
     })
 
     waveFormRef.current?.on('audioprocess',()=>{
-        setCurrentTime(formatTime(waveFormRef.current?.getCurrentTime()))
+        setCurrentTime(formatTime(waveFormRef.current?.getCurrentTime() ?? 0))
     })
     
     waveFormRef.current?.on('finish', () => {

@@ -13,7 +13,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { useEffect } from "react";
 import axios from "axios";
-import {useLocation} from  "react-router-dom"
 
 function Home() {
 
@@ -23,7 +22,7 @@ function Home() {
         console.log("User:", res.data.user);
       })
       .catch(err => {
-        console.log("Not logged in");
+        console.log("Not logged in",err);
       });
   }, []);
   
@@ -67,11 +66,9 @@ function Home() {
             delay: 2000,
             disableOnInteraction: false,
           }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
           className="text-black flex items-center justify-center h-full w-full"
         >
-            <SwiperSlide className="p-[3px] " ><WobbleCard containerClassName=" shrink-0 w-[300px] h-full  bg-white/40 backdrop-blur-3xl"></WobbleCard> </SwiperSlide>
+            <SwiperSlide className="p-[3px] " ><WobbleCard containerClassName=" shrink-0 w-[300px] h-full  bg-white/40 backdrop-blur-3xl"><span>Hey</span></WobbleCard> </SwiperSlide>
 
         </Swiper>
 

@@ -6,9 +6,9 @@ import MusicPlayer from './MusicPlay/MusicPlayer'
 function Mobile() {
   return (
     <>
-    {/* <CollectionPage /> */}
-    {/* <HomePage />
-    <MusicPlayer /> */}
+    { <CollectionPage /> }
+    { <HomePage />}
+    {<MusicPlayer /> }
     </>
   )
 }

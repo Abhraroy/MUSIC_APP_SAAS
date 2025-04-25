@@ -11,8 +11,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import AlbumCard from "../../Utility_Component/AlbumCard";
 
@@ -28,8 +26,8 @@ import AlbumCard from "../../Utility_Component/AlbumCard";
 function CollectionPage() {
   const navButtonArray_type_1 = ["Latest", "Albums", "Songs", "Events"];
   const navButtonArray_type_2 = ["Home","About Artist","Events","Collection"]
-  const FeatureSong = []
-  const Albums = []
+  // const FeatureSong = []
+  // const Albums = []
 
 
   const searchInput = useRef<HTMLInputElement | null>(null)
@@ -37,11 +35,11 @@ function CollectionPage() {
 
 
 
-  const handleSearch = (e)=>{
+  const handleSearch = (e:any)=>{
     e.currentTarget.style.display="none";
     searchInput.current && (searchInput.current.style.display = "block");
   }
-  const handleKeypress = (e)=>{
+  const handleKeypress = (e:any)=>{
     if (e.key==="Escape"){
       console.log("e"); 
       searchInput.current && (searchInput.current.style.display="none")

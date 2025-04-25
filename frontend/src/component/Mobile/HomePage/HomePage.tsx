@@ -1,40 +1,37 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import { BackgroundLines } from "@/components/ui/background-lines";
 import ColourfulText from "@/components/ui/colourful-text";
 import SwiperCaraousel from "../../Utility_Component/SwiperCaraousel";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import CountDown from "../../Utility_Component/CountDown";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "@/components/ui/moving-border";
-import { FloatingNav } from "@/components/ui/floating-navbar";
 import { BiAlarm } from "react-icons/bi";
 import { SiApplemusic } from "react-icons/si";
 
 function HomePage() {
-  const words = "Upcoming Song Countdown";
-  const navItems = [
-    {
-      name: "Home",
-      link: "/",
-      icon:(
-        <BiAlarm />
-      )
-    },
-    {
-      name: "About",
-      link: "/about",
-      icon:(
-        <BiAlarm />
-      )
-    },
-    {
-      name: "Contact",
-      link: "/contact",
-      icon:(
-        <BiAlarm />
-      )
-    },
-  ];
+  // const words = "Upcoming Song Countdown";
+  // const navItems = [
+  //   {
+  //     name: "Home",
+  //     link: "/",
+  //     icon:(
+  //       <BiAlarm />
+  //     )
+  //   },
+  //   {
+  //     name: "About",
+  //     link: "/about",
+  //     icon:(
+  //       <BiAlarm />
+  //     )
+  //   },
+  //   {
+  //     name: "Contact",
+  //     link: "/contact",
+  //     icon:(
+  //       <BiAlarm />
+  //     )
+  //   },
+  // ];
   return (
     <>
       <AuroraBackground className="bg-black h-fit">

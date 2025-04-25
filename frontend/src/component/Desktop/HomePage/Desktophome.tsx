@@ -1,35 +1,35 @@
 import { formatTime } from "@/Component/utils/TimeFormat";
-import { useEffect, useRef,useState} from "react";
+import { useEffect, useRef} from "react";
 import WaveSurfer from "wavesurfer.js";
 import useStore from "../../utils/ZustandStore.js";
 import { IoPauseCircle } from "react-icons/io5";
 import { IoPlayCircle } from "react-icons/io5";
-import { WobbleCard } from "@/components/ui/wobble-card.js";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  EffectCards,
-  EffectCreative,
-  Autoplay,
-  Mousewheel
-} from "swiper/modules";
+// import { WobbleCard } from "@/components/ui/wobble-card.js";
+// import {
+//   Navigation,
+//   Pagination,
+//   Scrollbar,
+//   A11y,
+//   EffectCards,
+//   EffectCreative,
+//   Autoplay,
+//   Mousewheel
+// } from "swiper/modules";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-cards";
-import "swiper/css/bundle";
-import { TfiArrowCircleLeft } from "react-icons/tfi";
-import { TfiArrowCircleRight } from "react-icons/tfi";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
+// import "swiper/css/scrollbar";
+// import "swiper/css/effect-cards";
+// import "swiper/css/bundle";
+// import { TfiArrowCircleLeft } from "react-icons/tfi";
+// import { TfiArrowCircleRight } from "react-icons/tfi";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input.js";
 import { GoHome } from "react-icons/go";
 import { SlEvent } from "react-icons/sl";
-import Home from "../DesktopComponent/Home.js";
-import Collection from "../DesktopComponent/Collection.js";
+// import Home from "../DesktopComponent/Home.js";
+// import Collection from "../DesktopComponent/Collection.js";
 import { useNavigate } from "react-router-dom";
 import { RiFolderMusicLine } from "react-icons/ri";
 import { PinContainer } from "@/components/ui/3d-pin.js";
@@ -46,8 +46,9 @@ import { IoIosArrowForward } from "react-icons/io";
 
 
 
-function Desktophome({MainElement}) {
-  const { Play, setPlay,Duration,setDuration,CurrentTime,setCurrentTime,track,setTrack,pageNo,setpageNo} = useStore();
+function Desktophome(props: { MainElement?: React.ReactNode }) {
+  const { MainElement } = props;
+  const { Play, setPlay,Duration,setDuration,CurrentTime,setCurrentTime,track,pageNo,setpageNo} = useStore();
 
   const waveFormRef = useRef<WaveSurfer | null>(null);
   const waveContainer = useRef(null);
@@ -112,12 +113,14 @@ function Desktophome({MainElement}) {
         // normalize:true
       });
     waveFormRef.current?.on('ready',()=>{
-        const totalSecond = waveFormRef.current?.getDuration()
-        setDuration(formatTime(totalSecond))
+        const totalSecond = waveFormRef.current?.getDuration();
+        if (totalSecond !== undefined) {
+          setDuration(formatTime(totalSecond));
+        }
     })
 
     waveFormRef.current?.on('audioprocess',()=>{
-        setCurrentTime(formatTime(waveFormRef.current?.getCurrentTime()))
+        setCurrentTime(formatTime(waveFormRef.current?.getCurrentTime() ?? 0))
     })
     
     waveFormRef.current?.on('finish', () => {
@@ -176,7 +179,7 @@ function Desktophome({MainElement}) {
         <div className=" w-[80px] h-[300px] rounded-[50px] bg-white/10 backdrop-blur-xl gap-[1rem]  p-[1rem] border-box flex flex-col items-center justify-start shrink-0 " >
         {
       NavArrbutton.map((Icon, index) => (
-      <Icon className="text-white text-5xl bg-black/50 hover:bg-white/50 hover:backdrop-blur-xl  rounded-xl p-[0.7rem] border-box " onClick={() => handleNavigation(Number(index))} />
+      <Icon key={index} className="text-white text-5xl bg-black/50 hover:bg-white/50 hover:backdrop-blur-xl  rounded-xl p-[0.7rem] border-box " onClick={() => handleNavigation(Number(index))} />
     ))
       }
 
@@ -211,9 +214,7 @@ function Desktophome({MainElement}) {
             </div>
             </div>
             
-              {
-                MainElement
-              }
+              {MainElement && MainElement}
           </div>
             
 

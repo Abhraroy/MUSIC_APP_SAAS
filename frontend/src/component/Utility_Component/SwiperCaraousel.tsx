@@ -3,21 +3,14 @@ import {
   Pagination,
   Scrollbar,
   A11y,
-  EffectCards,
   EffectCreative,
   Autoplay,
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-cards";
+
 import "swiper/css/bundle";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { MovingBorder } from "@/components/ui/moving-border";
-import { Button } from "@/components/ui/moving-border";
+
 
 function SwiperCaraousel() {
   let arr = [1, 2, 3,4];
@@ -59,8 +52,6 @@ function SwiperCaraousel() {
         //     delay: 2000,
         //     disableOnInteraction: false,
         //   }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
           className="text-black flex items-center justify-center h-full w-full overflow-hidden"
         >
           {arr.map((item, index) => (

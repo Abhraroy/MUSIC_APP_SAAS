@@ -1,4 +1,4 @@
-import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+
 import { WobbleCard } from "@/components/ui/wobble-card.js";
 import {
   Navigation,
@@ -17,16 +17,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css/scrollbar";
 // import "swiper/css/effect-cards";
 import "swiper/css/bundle";
-import ExpandableCardDemo from "@/components/expandable-card-demo-standard";
-import { LayoutGrid } from "@/components/ui/layout-grid";
+
 import useStore from "@/Component/utils/ZustandStore";
 function Collection() {
 
-  const {track,setTrack} = useStore()
+  const {setTrack} = useStore()
 
 
 
-  const handleTrack = (url:String)=>{
+  const handleTrack = (url:string)=>{
     setTrack(url)
   }
 
@@ -68,12 +67,10 @@ function Collection() {
             delay: 2000,
             disableOnInteraction: false,
           }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
           className="text-black flex items-center justify-center h-full w-full"
         >
           <SwiperSlide className="p-[3px] ">
-            <WobbleCard containerClassName=" shrink-0 w-[250px] h-full  bg-white/40 backdrop-blur-3xl"></WobbleCard>{" "}
+            <WobbleCard containerClassName=" shrink-0 w-[250px] h-full  bg-white/40 backdrop-blur-3xl">hey</WobbleCard>{" "}
           </SwiperSlide>
         </Swiper>
       </div>
