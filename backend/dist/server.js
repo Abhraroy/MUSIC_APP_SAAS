@@ -27,16 +27,16 @@ app.use(session({
         httpOnly: true,
         // secure:process.env.NODE_ENV==="production"?true:false,
         secure: false,
-        sameSite: "none"
+        sameSite: "lax"
     }
 }));
-//Initializing passport and making it with session
-app.use(passport.initialize());
-app.use(passport.session());
 // Calling the utility function to configure passport 
 configurePassport();
 // Calling the utility function to configure Cloudinary API 
 cloudinaryConfig();
+//Initializing passport and making it with session
+app.use(passport.initialize());
+app.use(passport.session());
 // Home route not necessary can be deleted
 app.get("/", (req, res) => {
     res.send("<h2>hey hello</h2>");

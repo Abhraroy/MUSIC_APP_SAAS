@@ -12,10 +12,12 @@ authRouter.get("/test", (req, res) => {
 // routes for the next steps after successfull or login failure
 ///google/callback is the route where it will be redirected on successfull login it has to be same as the one in google api platform
 authRouter.get("/google/callback", passport.authenticate("google", {
-    failureRedirect: "api/v1/auth/login-failed", // route to redirect to if login failed
+    failureRedirect: "https://music-app-saas.onrender.com/api/v1/auth/login-failed",
+    failureMessage: true // route to redirect to if login failed
 }), (req, res, next) => {
+    console.log("✅ Login successful, user:", req.user);
     try {
-        res.status(200).redirect(`${process.env.CLIENT_URI}?`); // Redirect to your client URL with user info
+        res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
     }
     catch (err) {
         console.error('Google OAuth Error:', err); // logs detailed error

@@ -45,12 +45,19 @@ app.use(
             maxAge: 1000 * 60 * 60 * 24, // 1 day   
             httpOnly:true,
             // secure:process.env.NODE_ENV==="production"?true:false,
-            secure:true,
-            sameSite:"none"
+            secure:false,
+            sameSite:"lax"
             }
         })
 )
 
+// Calling the utility function to configure passport 
+
+configurePassport()
+
+// Calling the utility function to configure Cloudinary API 
+
+cloudinaryConfig()
 
 //Initializing passport and making it with session
 
@@ -59,14 +66,7 @@ app.use(passport.session())
 
 
 
-// Calling the utility function to configure passport 
 
-configurePassport()
-
-
-// Calling the utility function to configure Cloudinary API 
-
-cloudinaryConfig()
 
 
 
