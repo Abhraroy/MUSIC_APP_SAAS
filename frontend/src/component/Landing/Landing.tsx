@@ -5,10 +5,21 @@ import "./Landing.css"
 
 function Landing() {
 
+
+  
+
+
+
+
+
+
+
+
+
+
+
   const handleLogin = async()=>{
     window.location.href = "https://music-app-saas.onrender.com/api/v1/auth/google";
-
-    
   }
 
 

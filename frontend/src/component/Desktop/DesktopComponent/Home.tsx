@@ -16,8 +16,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css/scrollbar";
 // import "swiper/css/effect-cards";
 import "swiper/css/bundle";
+import { useEffect } from "react";
+import axios from "axios";
 
 function Home() {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get('/user/currentuser');
+      console.log(response);
+    };
+    fetchData();
+  }, []);
+
+
+
+
   return (
     <>
     <div className="w-full h-[38%]  bg-green-200 shrink-0 " ></div>
