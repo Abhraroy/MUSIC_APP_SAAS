@@ -6,12 +6,8 @@ import "./Landing.css"
 function Landing() {
 
   const handleLogin = async()=>{
-    const response = axios.get('/auth/google',(err)=>{
-      console.log(err);
+    window.location.href = "https://music-app-saas.onrender.com/api/v1/auth/google";
 
-    })
-    console.log("request generated")
-    console.log(response);
     
   }
 
