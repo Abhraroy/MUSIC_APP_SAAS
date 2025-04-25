@@ -26,8 +26,8 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24, // 1 day   
         httpOnly: true,
         // secure:process.env.NODE_ENV==="production"?true:false,
-        secure: false,
-        sameSite: "lax"
+        secure: true,
+        sameSite: "none"
     }
 }));
 // Calling the utility function to configure passport 
