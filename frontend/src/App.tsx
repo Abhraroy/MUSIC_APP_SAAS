@@ -22,8 +22,8 @@
 
 
 import { useEffect, useState } from "react";
-import Mobile from "./Component/Mobile/MobileMain";
-import Desktop from "./Component/Desktop/DesktopMain";
+import Mobile from "./MyComponent/Mobile/MobileMain";
+import Desktop from "./MyComponent/Desktop/DesktopMain";
 
 
 
