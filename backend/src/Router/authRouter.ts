@@ -38,6 +38,7 @@ authRouter.get("/test", (req, res) => {
 authRouter.get("/google/callback",passport.authenticate("google",{
     failureRedirect:"/login-failed",// route to redirect to if login failed
 }),(req:Request,res:Response,next:NextFunction)=>{
+    console.log("✅ Login successful, user:", req.user);
     try {
     res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
     } catch (err) {
