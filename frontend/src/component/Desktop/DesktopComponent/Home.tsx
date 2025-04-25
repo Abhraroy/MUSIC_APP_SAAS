@@ -10,25 +10,27 @@ import {
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import "swiper/css/scrollbar";
-// import "swiper/css/effect-cards";
 import "swiper/css/bundle";
 import { useEffect } from "react";
 import axios from "axios";
+import {useLocation} from  "react-router-dom"
 
 function Home() {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get('/user/currentuser');
-      console.log(response);
-    };
-    fetchData();
-  }, []);
+  const location = useLocation();
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get("loggedIn")) {
+      axios.get("https://music-app-saas.onrender.com/api/v1/user/currentuser", {
+        withCredentials: true
+      }).then((res) => {
+        console.log("User:", res.data);
+      }).catch((err) => {
+        console.error("Not authenticated:", err);
+      });
+    }
+  }, [location]);
 
 
 

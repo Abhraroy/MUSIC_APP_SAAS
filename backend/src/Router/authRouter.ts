@@ -39,7 +39,7 @@ authRouter.get("/google/callback",passport.authenticate("google",{
     failureRedirect:"api/v1/auth/login-failed", // route to redirect to if login failed
 }),(req:Request,res:Response,next:NextFunction)=>{
     try {
-    res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
+    res.status(200).redirect(`${process.env.CLIENT_URI}?`); // Redirect to your client URL with user info
     } catch (err) {
         console.error('Google OAuth Error:', err); // logs detailed error
         next(err);
