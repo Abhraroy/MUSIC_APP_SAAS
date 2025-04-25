@@ -22,8 +22,8 @@
 
 
 import { useEffect, useState } from "react";
-import Mobile from "./Component/Mobile/Mobile";
-import Desktop from "./Component/Desktop/Desktop";
+import Mobile from "./Component/Mobile/Mobile.js";
+import Desktop from "./Component/Desktop/Desktop.js";
 
 
 const useViewport = () => {
