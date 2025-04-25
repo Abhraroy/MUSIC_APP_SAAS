@@ -25,7 +25,9 @@ app.use(session({
     cookie: {
         maxAge: 1000 * 60 * 60 * 24, // 1 day   
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production" ? true : false,
+        // secure:process.env.NODE_ENV==="production"?true:false,
+        secure: true,
+        sameSite: "none"
     }
 }));
 //Initializing passport and making it with session
