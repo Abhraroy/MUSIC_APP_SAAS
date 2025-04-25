@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
+// Schema for users
 const user = new Schema({
     googleId: {
         type: String,
@@ -22,6 +23,7 @@ const user = new Schema({
 }, {
     timestamps: true
 });
+// Schema for songs
 const media = new Schema({
     audio_asset_id: {
         type: String,

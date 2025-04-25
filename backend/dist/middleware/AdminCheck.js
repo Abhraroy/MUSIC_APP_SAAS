@@ -1,3 +1,4 @@
+//Middleware for checking if admin or not
 export const isAdmin = (req, res, next) => {
     const key = req.body.key;
     console.log(process.env.ADMIN_KEY);

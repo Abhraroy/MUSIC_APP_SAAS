@@ -1,14 +1,18 @@
-import { Router } from "express";
+// Main route handler for authentication related routes
+import { Router } from "express"; // Importing types 
 import passport from "passport";
 const authRouter = Router();
-const googleAuthMiddleware = passport.authenticate("google", { scope: ["email", "profile"] });
+const googleAuthMiddleware = passport.authenticate("google", { scope: ["email", "profile"] }); // Specifying the strategy and scope for passport for authetication
 console.log("✅ Google Auth Route Registered");
-authRouter.get("/google", googleAuthMiddleware);
+authRouter.get("/google", googleAuthMiddleware); // route for login via google
+// route for testing during development can be deleted
 authRouter.get("/test", (req, res) => {
     res.send("🚀auth Test route works");
 });
+// routes for the next steps after successfull or login failure
+///google/callback is the route where it will be redirected on successfull login it has to be same as the one in google api platform
 authRouter.get("/google/callback", passport.authenticate("google", {
-    failureRedirect: "api/v1/auth/login-failed",
+    failureRedirect: "api/v1/auth/login-failed", // route to redirect to if login failed
 }), (req, res, next) => {
     try {
         res.status(200).redirect(`${process.env.CLIENT_URL}?user=${req.user}`); // Redirect to your client URL with user info
@@ -18,12 +22,14 @@ authRouter.get("/google/callback", passport.authenticate("google", {
         next(err);
     }
 });
+//failed login route
 authRouter.get("/login-failed", (req, res) => {
     res.status(401).json({
         success: false,
         msg: "Authentication failed"
     });
 });
+//logout route
 authRouter.get("/logout", (req, res) => {
     req.logOut((err) => {
         if (err) {
@@ -39,8 +45,8 @@ authRouter.get("/logout", (req, res) => {
                     msg: "Error logging out"
                 });
             }
-            res.clearCookie("connect.sid");
-            res.clearCookie("auth_token");
+            res.clearCookie("connect.sid"); // clearing the cookie the cookie name is coonect.sid
+            res.clearCookie("auth_token"); // clearing the cookie auth token
             res.status(200).json({
                 success: true,
                 msg: "The use successfully logout"
