@@ -1,7 +1,7 @@
-import { formatTime } from "@/Component/utils/TimeFormat.js";
+import { formatTime } from "@/Component/utils/TimeFormat";
 import { useEffect, useRef} from "react";
 import WaveSurfer from "wavesurfer.js";
-import useStore from "../../utils/ZustandStore.js";
+import useStore from "../../utils/ZustandStore";
 import { IoPauseCircle } from "react-icons/io5";
 import { IoPlayCircle } from "react-icons/io5";
 // import { WobbleCard } from "@/components/ui/wobble-card.js";
