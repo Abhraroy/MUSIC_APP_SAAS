@@ -4,7 +4,7 @@ import SwiperCaraousel from "../../Utility_Component/SwiperCaraousel";
 import CountDown from "../../Utility_Component/CountDown";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "@/components/ui/moving-border";
-import { BiAlarm } from "react-icons/bi";
+// import { BiAlarm } from "react-icons/bi";
 import { SiApplemusic } from "react-icons/si";
 
 function HomePage() {

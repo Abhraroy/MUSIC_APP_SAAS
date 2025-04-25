@@ -1,4 +1,4 @@
-import SingleMusicCard from "../Utility_Component/SingleMusicCard"
+import SingleMusicCard from "../../Utility_Component/SingleMusicCard"
 
 function MusicPlayer() {
   return (
