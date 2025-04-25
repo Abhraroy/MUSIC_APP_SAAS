@@ -36,7 +36,8 @@ authRouter.get("/test", (req, res) => {
 ///google/callback is the route where it will be redirected on successfull login it has to be same as the one in google api platform
 
 authRouter.get("/google/callback",passport.authenticate("google",{
-    failureRedirect:"/login-failed", // route to redirect to if login failed
+    failureRedirect:"/login-failed",
+    failureFlash:true // route to redirect to if login failed
 }),(req:Request,res:Response,next:NextFunction)=>{
     try {
     res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
