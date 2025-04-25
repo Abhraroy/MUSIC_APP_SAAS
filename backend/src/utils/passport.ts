@@ -21,8 +21,7 @@ console.log("✅ CALLBACK URL:", process.env.OAUTH_CALLBACK_URL);
         clientID: process.env.OAUTH_CLIENT_ID || "",
         clientSecret: process.env.OAUTH_CLIENT_SECRET || "",
         callbackURL: process.env.OAUTH_CALLBACK_URL || ""
-    },(accessToken:string,refreshToken:string,profile:any,done:any)=>{
-        (async()=>{
+    },async(accessToken:string,refreshToken:string,profile:any,done:any)=>{
             try {
                 const user = await userModel.findOne({email: profile.emails[0].value}) // searching databse to find if the user already exists in the database
                 if(!user){
@@ -32,7 +31,6 @@ console.log("✅ CALLBACK URL:", process.env.OAUTH_CALLBACK_URL);
                         email:profile.emails[0].value,
                         avatar:profile.photos[0].value
                     });
-                    user.save()
                 }
                 else if (!user.googleId) {
                     user.googleId = profile.id;
@@ -42,7 +40,6 @@ console.log("✅ CALLBACK URL:", process.env.OAUTH_CALLBACK_URL);
             } catch (error) {
                 return done(error,null)
             }
-        })()
     }))
 
 
