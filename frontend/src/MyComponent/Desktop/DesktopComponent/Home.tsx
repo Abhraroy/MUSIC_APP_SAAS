@@ -11,20 +11,20 @@ import {
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import { useEffect } from "react";
-import axios from "axios";
+// import { useEffect } from "react";
+// import axios from "axios";
 
 function Home() {
 
-  useEffect(() => {
-    axios.get("/user/current-user", { withCredentials: true })
-      .then(res => {
-        console.log("User:", res.data.user);
-      })
-      .catch(err => {
-        console.log("Not logged in",err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get("/user/current-user", { withCredentials: true })
+  //     .then(res => {
+  //       console.log("User:", res.data.user);
+  //     })
+  //     .catch(err => {
+  //       console.log("Not logged in",err);
+  //     });
+  // }, []);
   
 
 
