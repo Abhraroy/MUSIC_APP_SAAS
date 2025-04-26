@@ -3,7 +3,7 @@ import {BrowserRouter} from "react-router-dom"
 import { Route ,Routes } from "react-router-dom"
 import Home from "./DesktopComponent/Home"
 import Collection from "./DesktopComponent/Collection"
-import Landing from "../Landing/Landing"
+// import Landing from "../Landing/Landing"
 
 function Desktop() {
   return (
