@@ -11,7 +11,7 @@ function Desktop() {
    <BrowserRouter>
     <Routes>
       <Route path="/home" element={<Desktophome MainElement = {<Home />} />} />
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={<Home />} />
       <Route path="/collection" element={<Desktophome MainElement = {<Collection />} />} />
     </Routes>
 
