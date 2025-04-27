@@ -49,6 +49,9 @@ export const configurePassport = async () => {
     // deserializing user to get the data out of it
     try {
       const user = await userModel.findById(id);
+      if (!user) {
+        return done(new Error("User not found"), null);
+      }
       done(null, user); // makes `req.user` available in routes
     } catch (err) {
       done(err, null);

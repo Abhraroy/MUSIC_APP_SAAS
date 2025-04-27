@@ -53,7 +53,7 @@ app.use(
 
 // Calling the utility function to configure passport 
 
-configurePassport()
+await configurePassport()
 
 // Calling the utility function to configure Cloudinary API 
 

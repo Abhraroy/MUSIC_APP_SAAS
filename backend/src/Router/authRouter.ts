@@ -41,7 +41,7 @@ authRouter.get("/google/callback",passport.authenticate("google",{
 }),(req:Request,res:Response,next:NextFunction)=>{
     console.log("✅ Login successful, user:", req.user);
     try {
-    // res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
+    res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
     } catch (err) {
         console.error('Google OAuth Error:', err); // logs detailed error
         next(err);
@@ -119,7 +119,6 @@ authRouter.get("/session-test", (req: Request, res: Response) => {
       user: req.user || null
     });}catch(Err){
         console.log(Err);
-        
     }
   });
 
