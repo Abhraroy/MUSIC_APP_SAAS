@@ -96,6 +96,7 @@ authRouter.get("/logout",(req:Request,res:Response)=>{
 
 
 authRouter.get("/currentuser",(req:Request,res:Response)=>{
+    res.send("<>hey</>")
     if(req.isAuthenticated()){
         res.status(200).json({
             success:true,
