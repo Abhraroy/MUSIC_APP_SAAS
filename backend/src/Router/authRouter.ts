@@ -96,18 +96,21 @@ authRouter.get("/logout",(req:Request,res:Response)=>{
 
 
 authRouter.get("/currentuser",(req:Request,res:Response)=>{
-    res.send("<>hey</>")
-    if(req.isAuthenticated()){
-        res.status(200).json({
-            success:true,
-            msg:req.user
-        })
-    }else{
-        res.status(401).json({
-            success:false,
-            msg:"The user is not authenticated"
-        })
-    }
+    // res.send("<>hey</>")
+    // if(req.isAuthenticated()){
+    //     res.status(200).json({
+    //         success:true,
+    //         msg:req.user
+    //     })
+    // }else{
+    //     res.status(401).json({
+    //         success:false,
+    //         msg:"The user is not authenticated"
+    //     })
+    // }
+    res.json({
+        msg:"route working"
+    })
 })
 
 authRouter.get("/session-test", (req: Request, res: Response) => {
@@ -121,7 +124,7 @@ authRouter.get("/session-test", (req: Request, res: Response) => {
     });}catch(Err){
         console.log(Err);
     }
-  });
+});
 
 
 
