@@ -110,14 +110,17 @@ authRouter.get("/currentuser",(req:Request,res:Response)=>{
 })
 
 authRouter.get("/session-test", (req: Request, res: Response) => {
-    console.log("Session test:", req.session);
+    try{console.log("Session test:", req.session);
     console.log("User:", req.user);
     res.json({
       sessionExists: !!req.session,
       isAuthenticated: req.isAuthenticated(),
       sessionId: req.sessionID,
       user: req.user || null
-    });
+    });}catch(Err){
+        console.log(Err);
+        
+    }
   });
 
 
