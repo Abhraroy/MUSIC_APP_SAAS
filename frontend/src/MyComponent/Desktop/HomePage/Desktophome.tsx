@@ -90,6 +90,8 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
   ]
   
   useEffect(() => {
+
+
     const fetchData = async () => {
       const result = await axios.get("/auth/currentuser");
       console.log(result);

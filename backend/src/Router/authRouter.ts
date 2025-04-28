@@ -2,6 +2,7 @@
 
 import { userModel } from "../Models/DB_MODEL.js";
 import { Router, Response, Request, NextFunction } from "express"; // Importing types
+import { Cookie } from "express-session";
 // Removed incorrect import for GetTokenResponse
 
 declare module "express-session" {
@@ -89,9 +90,12 @@ authRouter.get(
         <html>
           <body>
             <script>
-              window.opener.postMessage('login-success', '*');
-              window.close();
-            </script>
+        // Give the browser a moment to set cookies
+        setTimeout(() => {
+          window.opener.postMessage({ status: 'login-success', user: ${JSON.stringify(req.session.user)} }, '${process.env.CLIENT_URI}');
+          window.close();
+        }, 1000);
+      </script>
           </body>
         </html>
       `);

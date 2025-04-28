@@ -31,7 +31,10 @@ console.log("ENV PORT:", process.env.PORT);
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({origin:process.env.CORS_ORIGIN,credentials:true}))
+app.use(cors({origin:process.env.CORS_ORIGIN,credentials:true
+    ,
+    exposedHeaders: ['set-cookie']
+}))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
 
