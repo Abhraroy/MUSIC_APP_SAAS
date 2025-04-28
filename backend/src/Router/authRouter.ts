@@ -85,8 +85,17 @@ authRouter.get(
         email: user.email,
         avatar: user.avatar,
       };
-
-      res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
+      res.send(`
+        <html>
+          <body>
+            <script>
+              window.opener.postMessage('login-success', '*');
+              window.close();
+            </script>
+          </body>
+        </html>
+      `);
+    //   res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
     } catch (err) {
       console.error("Google OAuth Error:", err); // logs detailed error
       next(err);
