@@ -23,15 +23,15 @@ const client = new OAuth2Client(
 
 console.log("✅ Google Auth Route Registered");
 
-authRouter.get("/auth/google", (req, res) => {
-//   const url = client.generateAuthUrl({
-//     access_type: "offline",
-//     scope: [
-//       "https://www.googleapis.com/auth/userinfo.profile",
-//       "https://www.googleapis.com/auth/userinfo.email",
-//     ],
-//   });
-  res.send("hey")
+authRouter.get("/google", (req, res) => {
+  const url = client.generateAuthUrl({
+    access_type: "offline",
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  });
+  res.redirect(url);
 }); // route for login via google
 
 // route for testing during development can be deleted
