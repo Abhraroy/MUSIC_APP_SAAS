@@ -96,7 +96,7 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
     const fetchUserData = async () => {
       try {
         // The credentials: 'include' is crucial - it sends cookies with the request
-        const response = await fetch(`${API_URL}/session-test`, {
+        const response = await fetch(`${API_URL}/currentuser`, {
           method: 'GET',
           credentials: 'include', // Important for cookies/session
           headers: {
@@ -113,8 +113,6 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
         
       } catch (err) {
         console.error('Error fetching user data:', err);
-        
-      
       } 
     };
 
