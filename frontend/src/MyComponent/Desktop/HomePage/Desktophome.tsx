@@ -89,34 +89,7 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
   ]
   
 
-  const API_URL ='https://music-app-saas.onrender.com/api/v1/auth';
-
-  useEffect(() => {
-    // Function to fetch user data
-    const fetchUserData = async () => {
-      try {
-        // The credentials: 'include' is crucial - it sends cookies with the request
-        const response = await fetch(`${API_URL}/currentuser`, {
-          method: 'GET',
-          credentials: 'include', // Important for cookies/session
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        if (!response.ok) {
-          throw new Error('Not authenticated');
-        }
-
-        const data = await response.json();
-        console.log(data);
-        
-      } catch (err) {
-        console.error('Error fetching user data:', err);
-      } 
-    };
-
-    fetchUserData();
-  }, []);
+  
 
 
 
