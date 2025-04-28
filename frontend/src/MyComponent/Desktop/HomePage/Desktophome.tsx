@@ -41,6 +41,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import axios from "axios";
 
 
 
@@ -88,7 +89,10 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
     },
   ]
   
-
+  useEffect(()=>{
+    const result = axios.get("/auth/currentuser")
+    console.log(result)
+  },[])
   
 
 
