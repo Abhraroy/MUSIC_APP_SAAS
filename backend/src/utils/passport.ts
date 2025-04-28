@@ -2,6 +2,32 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth2"; // googleStrategy as it is google oauth
 import { userModel } from "../Models/DB_MODEL.js";
 
+passport.serializeUser((user: any, done) => done(null, user._id)); //serializing users
+
+passport.deserializeUser(async (id: any, done) => {
+  // deserializing user to get the data out of it
+  try {
+    const user = await userModel.findById(id);
+    if (!user) {
+      return done(new Error("User not found"), null);
+    }
+    done(null, user); // makes `req.user` available in routes
+  } catch (err) {
+    done(err, null);
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 export const configurePassport = async () => {
   console.log("✅ CALLBACK URL:", process.env.OAUTH_CALLBACK_URL);
 
@@ -43,18 +69,5 @@ export const configurePassport = async () => {
     )
   );
 
-  passport.serializeUser((user: any, done) => done(null, user._id)); //serializing users
-
-  passport.deserializeUser(async (id: any, done) => {
-    // deserializing user to get the data out of it
-    try {
-      const user = await userModel.findById(id);
-      if (!user) {
-        return done(new Error("User not found"), null);
-      }
-      done(null, user); // makes `req.user` available in routes
-    } catch (err) {
-      done(err, null);
-    }
-  });
+ 
 };
