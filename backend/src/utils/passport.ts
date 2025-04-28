@@ -61,6 +61,7 @@ export const configurePassport = async () => {
             user.googleId = profile.id;
             await user.save();
           }
+          console.log("from profile",user)
           return done(null, user);
         } catch (error) {
           return done(error, null);
