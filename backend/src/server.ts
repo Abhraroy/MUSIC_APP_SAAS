@@ -2,7 +2,8 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 import cookieParser from "cookie-parser"
-import passport from "passport"
+// import passport from "passport"
+
 import session from "express-session"
 
 
@@ -13,7 +14,7 @@ import appRouter from "./Router/router.js";
 
 // Configuration functions
 
-import { configurePassport } from "./utils/passport.js"
+// import { configurePassport } from "./utils/passport.js"
 import cloudinaryConfig from "./utils/cloudinaryconfig.js"
 
 
@@ -29,6 +30,7 @@ console.log("ENV PORT:", process.env.PORT);
 
 const app = express()
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({origin:process.env.CORS_ORIGIN,credentials:true}))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
@@ -53,7 +55,7 @@ app.use(
 
 // Calling the utility function to configure passport 
 
-await configurePassport()
+// await configurePassport()
 
 // Calling the utility function to configure Cloudinary API 
 
@@ -61,8 +63,8 @@ cloudinaryConfig()
 
 //Initializing passport and making it with session
 
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport.session())
 
 
 

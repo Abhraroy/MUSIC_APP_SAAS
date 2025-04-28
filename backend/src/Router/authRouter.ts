@@ -4,20 +4,34 @@
 
 
 import {Router,Response,Request,NextFunction} from "express" // Importing types 
-import passport from "passport"
+// Removed incorrect import for GetTokenResponse
 
+declare module 'express-session' {
+  interface Session {
+    user?: any; // Add the user property to the Session interface
+  }
+}
+import passport from "passport"
+import { OAuth2Client } from 'google-auth-library';
 
 const authRouter = Router()
 
-const googleAuthMiddleware = passport.authenticate("google", { scope: ["email", "profile"] }); // Specifying the strategy and scope for passport for authetication
-
+// const googleAuthMiddleware = passport.authenticate("google", { scope: ["email", "profile"] }); // Specifying the strategy and scope for passport for authetication
+// Set up Google OAuth2 client
+const client = new OAuth2Client(process.env.OAUTH_CLIENT_ID, process.env.OAUTH_CLIENT_SECRET, process.env.OAUTH_CALLBACK_URL);
 
 
 console.log("✅ Google Auth Route Registered");
 
 
 
-authRouter.get("/google", googleAuthMiddleware); // route for login via google
+authRouter.get('/auth/google', (req, res) => {
+    const url = client.generateAuthUrl({
+      access_type: 'offline',
+      scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
+    });
+    res.redirect(url);
+  }); // route for login via google
 
 
 
@@ -35,24 +49,29 @@ authRouter.get("/test", (req, res) => {
 
 ///google/callback is the route where it will be redirected on successfull login it has to be same as the one in google api platform
 
-authRouter.get("/google/callback",passport.authenticate("google",{
-    failureRedirect:"https://music-app-saas.onrender.com/api/v1/auth/login-failed",
-    failureMessage:true// route to redirect to if login failed
-}),(req:Request,res:Response,next:NextFunction)=>{
-    console.log("✅ Login successful, user:", req.user);
-    console.log("✅ Login successful, session:", req.session);
+authRouter.get("/google/callback",async(req:Request,res:Response,next:NextFunction)=>{
+    const { code } = req.query;
     try {
-    // res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
-    res.send(`
-        <html>
-          <body>
-            <script>
-              window.opener.postMessage('login-success', '*');
-              window.close();
-            </script>
-          </body>
-        </html>
-      `); // ✨ send a mini HTML that tells the frontend
+    // Exchange the code for tokens
+    const response = await client.getToken(code as string); // Explicitly cast 'code' as string
+    const tokens = response.tokens
+
+    client.setCredentials(tokens);
+
+    // Use the token to get user info
+    const ticket = await client.verifyIdToken({
+      idToken: tokens.id_token,
+      audience: process.env.OAUTH_CLIENT_ID,
+    });
+
+    const user = ticket.getPayload(); // This contains the user's information (name, email, picture, etc.)
+
+    // Save the user info in the session
+    req.session.user = user;
+
+   
+    res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
+    
 
     } catch (err) {
         console.error('Google OAuth Error:', err); // logs detailed error
@@ -109,18 +128,11 @@ authRouter.get("/logout",(req:Request,res:Response)=>{
 
 authRouter.get("/currentuser",(req:Request,res:Response)=>{
     console.log("Cookies:", req.cookies);
-    if(req.isAuthenticated()){
-        res.status(200).json({
-            success:true,
-            msg:req.user
-        })
-    }else{
-        res.status(401).json({
-            success:false,
-            msg:"The user is not authenticated"
-        })
-    }
-    
+    if (req.session.user) {
+        res.json({ success: true, user: req.session.user });
+      } else {
+        res.status(401).json({ success: false, message: 'Not authenticated' });
+      }
 })
 
 authRouter.get("/session-test", (req: Request, res: Response) => {
