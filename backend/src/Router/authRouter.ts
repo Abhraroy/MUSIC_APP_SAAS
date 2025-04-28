@@ -40,19 +40,19 @@ authRouter.get("/google/callback",passport.authenticate("google",{
     failureMessage:true// route to redirect to if login failed
 }),(req:Request,res:Response,next:NextFunction)=>{
     console.log("✅ Login successful, user:", req.user);
+    console.log("✅ Login successful, session:", req.session);
     try {
     // res.status(200).redirect(`${process.env.CLIENT_URI}`); // Redirect to your client URL with user info
-    // res.send(`
-    //     <html>
-    //       <body>
-    //         <script>
-    //           window.opener.postMessage('login-success', '*');
-    //           window.close();
-    //         </script>
-    //       </body>
-    //     </html>
-    //   `); // ✨ send a mini HTML that tells the frontend
-        res.send(req.cookies)
+    res.send(`
+        <html>
+          <body>
+            <script>
+              window.opener.postMessage('login-success', '*');
+              window.close();
+            </script>
+          </body>
+        </html>
+      `); // ✨ send a mini HTML that tells the frontend
 
     } catch (err) {
         console.error('Google OAuth Error:', err); // logs detailed error
