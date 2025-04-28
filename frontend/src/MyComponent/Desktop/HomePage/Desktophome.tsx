@@ -89,10 +89,13 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
     },
   ]
   
-  useEffect(()=>{
-    const result = axios.get("/auth/currentuser")
-    console.log(result)
-  },[])
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get("/auth/currentuser");
+      console.log(result);
+    };
+    fetchData();
+  }, []);
   
 
 
