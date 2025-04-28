@@ -108,6 +108,7 @@ authRouter.get("/logout",(req:Request,res:Response)=>{
 
 
 authRouter.get("/currentuser",(req:Request,res:Response)=>{
+    console.log("Cookies:", req.cookies);
     if(req.isAuthenticated()){
         res.status(200).json({
             success:true,

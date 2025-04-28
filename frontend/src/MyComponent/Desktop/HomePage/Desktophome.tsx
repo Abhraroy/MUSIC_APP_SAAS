@@ -103,7 +103,6 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
             'Content-Type': 'application/json',
           },
         });
-
         if (!response.ok) {
           throw new Error('Not authenticated');
         }
