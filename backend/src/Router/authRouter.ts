@@ -91,10 +91,8 @@ authRouter.get(
           <body>
             <script>
         // Give the browser a moment to set cookies
-        setTimeout(() => {
           window.opener.postMessage({ status: 'login-success', user: ${JSON.stringify(req.session.user)} }, '${process.env.CLIENT_URI}');
           window.close();
-        }, 1000);
       </script>
           </body>
         </html>
