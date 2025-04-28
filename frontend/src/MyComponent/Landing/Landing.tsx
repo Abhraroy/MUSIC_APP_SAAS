@@ -1,9 +1,9 @@
 import { SparklesCore } from "@/components/ui/sparkles"
 import { Button } from "@/components/ui/moving-border";
 import "./Landing.css"
-
+import { useNavigate } from "react-router-dom";
 function Landing() {
-
+  const navigate = useNavigate();
   const handleLogin = () => {
     const popup = window.open(
       "https://music-app-saas.onrender.com/api/v1/auth/google",
