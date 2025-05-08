@@ -41,6 +41,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import axios from "axios";
 // import axios from "axios";
 
 
@@ -88,6 +89,18 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
       href: "#",
     },
   ]
+
+  useEffect(()=>{
+    const fetchMusic = async()=>{
+      const result = await axios.get('/music')
+      if(result){
+        console.log(result)
+      }else{
+        console.log("Error while fetching music")
+      }
+    }
+    fetchMusic()
+  })
   
 
   useEffect(() => {
