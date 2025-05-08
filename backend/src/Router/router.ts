@@ -7,13 +7,13 @@ import { Router } from "express"
 //Importing Route for overall server
 
 import userRoutes from "./userRoutes.js"
-import authRouter from "./authRouter.js"
+// import authRouter from "./authRouter.js"
 import ArtistRoutes from "./ArtistRoutes.js";
 import mediaRoute from "./mediaRoutes.js";
 
 // Middleware for checking user authentication
 
-import { isAuthenticatedUser } from "../middleware/Auth.js";
+// import { isAuthenticatedUser } from "../middleware/Auth.js";
 
 
 
@@ -46,11 +46,11 @@ appRouter.get("/", (req, res) => {
 //Route declaration for overall server
 
 
-appRouter.use("/auth",authRouter) // route handler for handling all routes related to authentication
+// appRouter.use("/auth",authRouter) // route handler for handling all routes related to authentication
 
-appRouter.use("/user",isAuthenticatedUser,userRoutes) // route handler for handling all routes related to user
+appRouter.use("/user",userRoutes) // route handler for handling all routes related to user
 
-appRouter.use("/media",isAuthenticatedUser,mediaRoute) //// route handler for handling all routes related to Mediafiles
+appRouter.use("/media",mediaRoute) //// route handler for handling all routes related to Mediafiles
 
 appRouter.use("/Artist-admin",ArtistRoutes) // route handler for handling all routes related to Admin here aka artist
 

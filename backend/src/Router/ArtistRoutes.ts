@@ -5,8 +5,8 @@ import fs from "fs";
 // import multer, { Multer } from "multer";
 import uploadFiles from "../middleware/UploadFiles.js";
 import { mediaModel } from "../Models/DB_MODEL.js";
-import { checkAdminAuth, isAdmin } from "../middleware/AdminCheck.js";
-import session from "express-session";
+import jwt from "jsonwebtoken"
+import { isAdmin } from "src/middleware/AdminCheck.js";
 
 // Extend Express Request to include session with our custom property
 declare module "express-session" {
@@ -26,11 +26,24 @@ const ArtistRoutes = Router()
 
 
 
-ArtistRoutes.post("/Admin-login",isAdmin,(req:Request,res:Response)=>{
-    if (req.session) {
-        req.session.isAdminAuthenticated = true;
-      }
-    res.status(200).json({msg:"Welcome Admin"})
+ArtistRoutes.post("/Admin-login",(req:Request,res:Response)=>{
+    const {Admin_Pin} = req.body.Admin_Pin
+    try{let token
+    if(Admin_Pin===process.env.ADMIN_PIN){
+       token = jwt.sign({
+        isAdmin:true
+      },process.env.JWT_SECRET)
+    }
+    res.status(200).json({
+      msg:"Admin login successful",
+      token
+    })}
+    catch(err){
+      res.status(400).json({
+        msg:"Not successfull"
+      })
+    }
+
 })
 
 
@@ -48,7 +61,7 @@ ArtistRoutes.post("/Admin-logout",isAdmin,(req:Request,res:Response)=>{
 
 ArtistRoutes.post(
   "/upload",
-  checkAdminAuth,
+  isAdmin,
   uploadFiles,
   async (req: CustomRequest, res: Response) => {
     try {

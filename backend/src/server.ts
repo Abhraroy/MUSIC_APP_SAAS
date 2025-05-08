@@ -2,31 +2,22 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 import cookieParser from "cookie-parser"
-// import passport from "passport"
 
-import session from "express-session"
+import cookieSession from "cookie-session"
 
-
-// Importing main route handler
 
 import appRouter from "./Router/router.js"; 
+import { passportStrategy } from "./utils/passport.js"
 
 
-// Configuration functions
-
-// import { configurePassport } from "./utils/passport.js"
 import cloudinaryConfig from "./utils/cloudinaryconfig.js"
 
-
-// configuring dotenv
 
 dotenv.config()
 console.log("ENV PORT:", process.env.PORT);
 
 
 
-
-// Initializing the app and necessary middlewares
 
 const app = express()
 app.use(express.json())
@@ -39,50 +30,20 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 
 
 
-// Necessary configuration for session for passport
-
-app.use(
-    session({
-        secret:process.env.SESSION_SECRET,
-        resave:false,
-        saveUninitialized:false,
-        cookie:{
-            maxAge: 1000 * 60 * 60 * 24, // 1 day   
-            httpOnly:true,
-            // secure:process.env.NODE_ENV==="production"?true:false,
-            secure:true,
-            sameSite:"none"
-            }
-        })
-)
-
-// Calling the utility function to configure passport 
-
-// await configurePassport()
-
-// Calling the utility function to configure Cloudinary API 
 
 cloudinaryConfig()
 
-//Initializing passport and making it with session
-
-// app.use(passport.initialize())
-// app.use(passport.session())
 
 
 
 
 
 
-
-
-// Home route not necessary can be deleted
 
 app.get("/",(req,res)=>{
     res.send("<h2>hey hello</h2>")
 })
 
-//generalizatiion of api routes
 
 app.use("/api/v1",appRouter)
 

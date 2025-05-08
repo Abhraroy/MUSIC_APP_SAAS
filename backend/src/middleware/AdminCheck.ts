@@ -2,24 +2,30 @@
 
 import { Request,Response,NextFunction } from "express";
 
+// Extend the Request interface to include isAdmin
+declare global {
+    namespace Express {
+        interface Request {
+            isAdmin?: boolean;
+        }
+    }
+}
+import jwt from "jsonwebtoken"
 
 
 export const isAdmin = (req:Request,res:Response,next:NextFunction)=>{
-    const key = req.body.key
-    console.log(process.env.ADMIN_KEY); 
-    if(key===process.env.ADMIN_KEY){
-        next()
-    }else{
-        res.status(400).json({msg:"You are not ADMIN"})
+    const isToken = req.headers.isAdmin
+    try{let token
+    if(isToken){
+        token = isToken
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (decoded && typeof decoded !== "string") {
+        req.isAdmin = (decoded as jwt.JwtPayload).isAdmin;
+    }
+    next()}catch(err){
+        res.status(403).json({
+            msg:"Not authorized"
+        })
     }
 }
-export const checkAdminAuth = (req: Request, res: Response, next: NextFunction) => {
-    // Check if admin is authenticated (using session or token)
-    // For example, with session:
-    if (req.session && req.session.isAdminAuthenticated) {
-      next(); // Admin is authenticated, proceed to next middleware/route handler
-    } else {
-      // Admin is not authenticated
-      res.status(401).json({ error: "Admin authentication required" });
-    }
-};
