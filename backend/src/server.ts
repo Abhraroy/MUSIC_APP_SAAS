@@ -7,7 +7,7 @@ import cookieSession from "cookie-session"
 
 
 import appRouter from "./Router/router.js"; 
-import { passportStrategy } from "./utils/passport.js"
+// import { passportStrategy } from "./utils/passport.js"
 
 
 import cloudinaryConfig from "./utils/cloudinaryconfig.js"
