@@ -6,7 +6,7 @@ import fs from "fs";
 import uploadFiles from "../middleware/UploadFiles.js";
 import { mediaModel } from "../Models/DB_MODEL.js";
 import jwt from "jsonwebtoken"
-import { isAdmin } from "src/middleware/AdminCheck.js";
+import { isAdmin } from "../middleware/AdminCheck.js";
 
 // Extend Express Request to include session with our custom property
 declare module "express-session" {
