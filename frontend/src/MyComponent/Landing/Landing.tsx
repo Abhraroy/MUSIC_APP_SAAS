@@ -4,26 +4,9 @@ import "./Landing.css"
 import { useNavigate } from "react-router-dom";
 function Landing() {
   const navigate = useNavigate();
-  const handleLogin = () => {
-    const popup = window.open(
-      "https://music-app-saas.onrender.com/api/v1/auth/google",
-      "_blank",
-      "width=500,height=600"
-    );
-
-    if (!popup) {
-      alert("Popup blocked! Please allow popups and try again.");
-      return;
-    }
-
-    // Listen for the popup message
-    window.addEventListener("message", (event) => {
-      if (event.data === "login-success") {
-        console.log("✅ OAuth login successful");
+  const handleLogin = () => 
         navigate("/home"); // Redirect to /home
-      }
-    }, { once: true }); // once:true so it only listens once
-  };
+  
   
 
 
