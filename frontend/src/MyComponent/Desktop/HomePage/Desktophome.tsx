@@ -41,7 +41,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-import axios from "axios";
+// import axios from "axios";
 
 
 
@@ -89,24 +89,6 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
     },
   ]
   
-  useEffect(() => {
-
-
-    const fetchData = async () => {
-      const result = await axios.get("/auth/currentuser");
-      console.log(result);
-    };
-    fetchData();
-  }, []);
-  
-
-
-
-
-
-
-
-
 
   useEffect(() => {
     if (waveContainer.current) {
