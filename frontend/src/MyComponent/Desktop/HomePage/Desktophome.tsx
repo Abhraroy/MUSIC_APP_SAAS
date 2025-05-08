@@ -92,7 +92,7 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
 
   useEffect(()=>{
     const fetchMusic = async()=>{
-      const result = await axios.get('/music')
+      const result = await axios.get('/music/')
       if(result){
         console.log(result)
       }else{
