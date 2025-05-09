@@ -29,7 +29,7 @@ ArtistRoutes.post("/Admin-login", (req: Request, res: Response) => {
   console.log(Admin_Pin)
   try {
     let token;
-    if (Admin_Pin === process.env.ADMIN_PIN) {
+    if (Admin_Pin == process.env.ADMIN_PIN) {
       token = jwt.sign(
         {
           isAdmin: true,
