@@ -25,7 +25,7 @@ interface CustomRequest extends Request {
 const ArtistRoutes = Router();
 
 ArtistRoutes.post("/Admin-login", (req: Request, res: Response) => {
-  const { Admin_Pin } = req.body.Admin_Pin;
+  const { Admin_Pin } = req.body;
   try {
     let token;
     if (Admin_Pin === process.env.ADMIN_PIN) {
