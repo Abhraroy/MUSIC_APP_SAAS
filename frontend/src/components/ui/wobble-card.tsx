@@ -7,10 +7,12 @@ export const WobbleCard = ({
   children,
   containerClassName,
   className,
+  noiseReplace,
 }: {
   children: React.ReactNode;
   containerClassName?: string;
   className?: string;
+  noiseReplace:string;
 }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -57,7 +59,7 @@ export const WobbleCard = ({
           }}
           className={cn("h-full px-4 py-20 sm:px-10", className)}
         >
-          <Noise />
+          <Noise noiseReplace = {noiseReplace} />
           {children}
         </motion.div>
       </div>
@@ -65,12 +67,13 @@ export const WobbleCard = ({
   );
 };
 
-const Noise = () => {
+const Noise = ({noiseReplace}:{noiseReplace:string}) => {
   return (
     <div
       className="absolute inset-0 w-full h-full scale-[1.2] transform opacity-10 [mask-image:radial-gradient(#fff,transparent,75%)]"
       style={{
-        backgroundImage: "url(/noise.webp)",
+        // backgroundImage: "url(/noise.webp)",`url(${noiseReplace})`
+        backgroundImage:`url(${noiseReplace})`,
         backgroundSize: "30%",
       }}
     ></div>
