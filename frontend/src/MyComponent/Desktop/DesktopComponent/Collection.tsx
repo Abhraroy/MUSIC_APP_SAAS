@@ -1,4 +1,3 @@
-
 import { WobbleCard } from "@/components/ui/wobble-card.js";
 import {
   Navigation,
@@ -7,7 +6,7 @@ import {
   A11y,
   EffectCreative,
   Autoplay,
-  Mousewheel
+  Mousewheel,
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,17 +16,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css/scrollbar";
 // import "swiper/css/effect-cards";
 import "swiper/css/bundle";
-import useStore from "../../utils/ZustandStore"
-function Collection() {
+import useStore from "../../utils/ZustandStore";
+function Collection({
+  musicList,
+}: {
+  musicList: Array<{
+    _id: string;
+    audio_URL: string;
+    audio_name: string;
+    img_URL: string;
+  }>;
+}) {
+  const { setTrack } = useStore();
 
-  const {setTrack} = useStore()
-
-
-
-  const handleTrack = (url:string)=>{
-    setTrack(url)
-  }
-
+  const handleTrack = (url: string) => {
+    setTrack(url);
+  };
 
   return (
     <>
@@ -68,27 +72,29 @@ function Collection() {
           }}
           className="text-black flex items-center justify-center h-full w-full"
         >
-          <SwiperSlide className="p-[3px] ">
-            <WobbleCard noiseReplace="" containerClassName=" shrink-0 w-[250px] h-full  bg-white/40 backdrop-blur-3xl">hey</WobbleCard>
-          </SwiperSlide>
+          {musicList.map(({ _id, audio_URL, audio_name, img_URL }) => (
+            <SwiperSlide key={_id} className="p-[3px] ">
+              <WobbleCard
+                containerClassName=" shrink-0 w-[300px] h-full  bg-white/50  backdrop-blur-3xl"
+                noiseReplace={img_URL}
+              >
+                <span>{audio_name}</span>
+                <img src={img_URL} />
+                <span>{audio_URL}</span>
+              </WobbleCard>{" "}
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
-      <div className=" w-full flex flex-row flex-wrap" >
-        <div className=" basis-1/3 h-[100px] border-box p-[10px] border-r-[2px] border-white bg-amber-300 " onClick={()=>handleTrack} ></div>
-       
+      <div className=" w-full flex flex-row flex-wrap">
+        <div
+          className=" basis-1/3 h-[100px] border-box p-[10px] border-r-[2px] border-white bg-amber-300 "
+          onClick={() => handleTrack("")}
+        ></div>
       </div>
-      <div className=" w-full h-[50px] shrink-0 " ></div>
+      <div className=" w-full h-[50px] shrink-0 "></div>
     </>
   );
 }
-
-
-
-
-
-
-
-
-
 
 export default Collection;
