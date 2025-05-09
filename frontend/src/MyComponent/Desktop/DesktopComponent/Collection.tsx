@@ -69,7 +69,7 @@ function Collection() {
           className="text-black flex items-center justify-center h-full w-full"
         >
           <SwiperSlide className="p-[3px] ">
-            <WobbleCard containerClassName=" shrink-0 w-[250px] h-full  bg-white/40 backdrop-blur-3xl">hey</WobbleCard>{" "}
+            <WobbleCard noiseReplace="" containerClassName=" shrink-0 w-[250px] h-full  bg-white/40 backdrop-blur-3xl">hey</WobbleCard>{" "}
           </SwiperSlide>
         </Swiper>
       </div>
