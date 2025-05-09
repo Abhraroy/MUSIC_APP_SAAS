@@ -101,7 +101,7 @@ function Desktophome(props: { MainElement:any }) {
       }
     }
     fetchMusic()
-  })
+  },[])
   
 
   useEffect(() => {
