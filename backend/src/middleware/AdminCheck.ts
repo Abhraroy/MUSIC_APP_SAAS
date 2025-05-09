@@ -15,7 +15,9 @@ import jwt from "jsonwebtoken"
 
 export const isAdmin = (req:Request,res:Response,next:NextFunction)=>{
     const isToken = req.headers.isAdmin
-    console.log(isToken)
+    if (!isToken) {
+        return res.status(401).json({ msg: "Admin token missing in 'isAdmin' header" });
+      }
     try{let token
     if(isToken){
         token = isToken
