@@ -75,7 +75,7 @@ function Home({
         >
           {musicList.map(({ _id, audio_URL, audio_name, img_URL }) => (
             <SwiperSlide key={_id} className="p-[3px] ">
-              <WobbleCard containerClassName=" shrink-0 w-[300px] h-full  bg-white backdrop-blur-3xl bg-[url()] " noiseReplace = {img_URL} >
+              <WobbleCard containerClassName=" shrink-0 w-[300px] h-full  bg-white/50  backdrop-blur-3xl" noiseReplace = {img_URL} >
                 <span>{audio_name}</span>
                 <img src={img_URL} />
                 <span>{audio_URL}</span>
