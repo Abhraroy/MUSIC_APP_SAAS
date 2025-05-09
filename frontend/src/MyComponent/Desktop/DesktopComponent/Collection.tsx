@@ -90,10 +90,10 @@ function Collection({
       {musicList.map(({ _id, audio_URL, audio_name, img_URL }) => (
            <div
            key={_id}
-           className=" basis-1/3 h-[100px] border-box p-[10px] border-r-[2px] border-white bg-amber-300 "
+           className=" basis-1/3 h-[100px] border-box p-[10px] border-r-[2px] border-white bg-amber-300  "
            onClick={() => handleTrack("")}
          >
-          <span>{audio_name}</span>
+          <span className="w-full overflow-clip ">{audio_name}</span>
           <span>{img_URL}</span>
           <span>{audio_URL}</span>
          </div>
