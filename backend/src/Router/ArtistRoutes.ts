@@ -26,6 +26,7 @@ const ArtistRoutes = Router();
 
 ArtistRoutes.post("/Admin-login", (req: Request, res: Response) => {
   const { Admin_Pin } = req.body;
+  console.log(Admin_Pin)
   try {
     let token;
     if (Admin_Pin === process.env.ADMIN_PIN) {
@@ -36,11 +37,11 @@ ArtistRoutes.post("/Admin-login", (req: Request, res: Response) => {
         process.env.JWT_SECRET
       );
       console.log(token)
+      res.status(200).json({
+        msg: "Admin login successful",
+        token: token,
+      });
     }
-    res.status(200).json({
-      msg: "Admin login successful",
-      token: token,
-    });
   } catch (err) {
     res.status(400).json({
       msg: "Not successfull",
