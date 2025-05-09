@@ -94,6 +94,7 @@ function Desktophome(props: { MainElement:any }) {
     const fetchMusic = async()=>{
       const result = await axios.get('/media/')
       if(result){
+        console.log(result.data.mediaResult);
         setMusicList(result.data.mediaResult)
         console.log(musicList);
       }else{
