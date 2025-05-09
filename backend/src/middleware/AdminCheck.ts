@@ -14,7 +14,7 @@ import jwt from "jsonwebtoken";
 
 export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
     console.log(req.headers)
-    const isToken = req.headers.isAdmin;
+    const isToken = req.headers.isadmin;
   if (!isToken) {
    console.log("token not ")
   }
