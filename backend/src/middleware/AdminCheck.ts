@@ -13,7 +13,8 @@ declare global {
 import jwt from "jsonwebtoken";
 
 export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
-  const isToken = req.headers.isAdmin;
+    console.log(req.headers)
+    const isToken = req.headers.isAdmin;
   if (!isToken) {
    console.log("token not ")
   }
