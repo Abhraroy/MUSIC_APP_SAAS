@@ -33,9 +33,7 @@ const useStore = create<{
     setCurrentTime:(time)=>set({CurrentTime:time || "00:00"}),
     setTrack:(track)=>set({track:track}),
     setpageNo:(index:number)=>set({pageNo:index}),
-    setMusicList:(music:any)=>set((state)=>({
-        musicList:[...state.musicList,music]
-    }))
+    setMusicList:(music:any)=>set({musicList:music})
 }))
 
 export default useStore
