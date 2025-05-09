@@ -94,8 +94,8 @@ function Collection({
            onClick={() => handleTrack("")}
          >
           <span className="w-full overflow-clip ">{audio_name}</span>
-          <span>{img_URL}</span>
-          <span>{audio_URL}</span>
+          <span className="w-full overflow-clip " >{img_URL}</span>
+          <span className="w-full overflow-clip " >{audio_URL}</span>
          </div>
           ))}
 

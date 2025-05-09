@@ -36,7 +36,7 @@ ArtistRoutes.post("/Admin-login",(req:Request,res:Response)=>{
     }
     res.status(200).json({
       msg:"Admin login successful",
-      token
+      token:token
     })}
     catch(err){
       res.status(400).json({
