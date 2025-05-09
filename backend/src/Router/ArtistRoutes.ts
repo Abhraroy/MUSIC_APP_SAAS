@@ -5,7 +5,7 @@ import fs from "fs";
 // import multer, { Multer } from "multer";
 import uploadFiles from "../middleware/UploadFiles.js";
 import { mediaModel } from "../Models/DB_MODEL.js";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import { isAdmin } from "../middleware/AdminCheck.js";
 
 // Extend Express Request to include session with our custom property
@@ -22,42 +22,38 @@ interface CustomRequest extends Request {
   };
 }
 
-const ArtistRoutes = Router()
+const ArtistRoutes = Router();
 
-
-
-ArtistRoutes.post("/Admin-login",(req:Request,res:Response)=>{
-    const {Admin_Pin} = req.body.Admin_Pin
-    try{let token
-    if(Admin_Pin===process.env.ADMIN_PIN){
-       token = jwt.sign({
-        isAdmin:true
-      },process.env.JWT_SECRET)
+ArtistRoutes.post("/Admin-login", (req: Request, res: Response) => {
+  const { Admin_Pin } = req.body.Admin_Pin;
+  try {
+    let token;
+    if (Admin_Pin === process.env.ADMIN_PIN) {
+      token = jwt.sign(
+        {
+          isAdmin: true,
+        },
+        process.env.JWT_SECRET
+      );
+      console.log(token)
     }
     res.status(200).json({
-      msg:"Admin login successful",
-      token:token
-    })}
-    catch(err){
-      res.status(400).json({
-        msg:"Not successfull"
-      })
-    }
+      msg: "Admin login successful",
+      token: token,
+    });
+  } catch (err) {
+    res.status(400).json({
+      msg: "Not successfull",
+    });
+  }
+});
 
-})
-
-
-ArtistRoutes.post("/Admin-logout",isAdmin,(req:Request,res:Response)=>{
-    if (req.session) {
-        req.session.isAdminAuthenticated = false;
-      }
-    res.status(200).json({msg:"Goodbye Admin"})
-})
-
-
-
-
-
+ArtistRoutes.post("/Admin-logout", isAdmin, (req: Request, res: Response) => {
+  if (req.session) {
+    req.session.isAdminAuthenticated = false;
+  }
+  res.status(200).json({ msg: "Goodbye Admin" });
+});
 
 ArtistRoutes.post(
   "/upload",
@@ -103,24 +99,24 @@ ArtistRoutes.post(
         }
       });
 
-
       try {
         const media = await mediaModel.create({
-            audio_asset_id:audioUploadResult.asset_id,
-            audio_URL:audioUploadResult.url,
-            audio_name:audioUploadResult.original_filename,
-            img_asset_id:thumbnailImgUploadResult.asset_id,
-            img_URL:thumbnailImgUploadResult.url
-          })
-        media.save()
+          audio_asset_id: audioUploadResult.asset_id,
+          audio_URL: audioUploadResult.url,
+          audio_name: audioUploadResult.original_filename,
+          img_asset_id: thumbnailImgUploadResult.asset_id,
+          img_URL: thumbnailImgUploadResult.url,
+        });
+        media.save();
         console.log("successfully saved to database");
-        
       } catch (error) {
         console.log(error);
       }
       res.status(200).json({ message: "File uploaded successfully" });
     } catch (error) {
-      res.status(500).json({ errormsg: "An error occurred during file upload",error });
+      res
+        .status(500)
+        .json({ errormsg: "An error occurred during file upload", error });
     }
   }
 );
