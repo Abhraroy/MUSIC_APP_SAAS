@@ -49,9 +49,9 @@ import axios from "axios";
 
 
 
-function Desktophome(props: { MainElement?: React.ReactNode }) {
+function Desktophome(props: { MainElement:any }) {
   const { MainElement } = props;
-  const { Play, setPlay,Duration,setDuration,CurrentTime,setCurrentTime,track,pageNo,setpageNo} = useStore();
+  const { Play, setPlay,Duration,setDuration,CurrentTime,setCurrentTime,track,pageNo,setpageNo,musicList,setMusicList} = useStore();
 
   const waveFormRef = useRef<WaveSurfer | null>(null);
   const waveContainer = useRef(null);
@@ -94,7 +94,8 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
     const fetchMusic = async()=>{
       const result = await axios.get('/media/')
       if(result){
-        console.log(result)
+        setMusicList(result.data.mediaResult)
+        console.log(musicList);
       }else{
         console.log("Error while fetching music")
       }
@@ -223,7 +224,7 @@ function Desktophome(props: { MainElement?: React.ReactNode }) {
             </div>
             </div>
             
-              {MainElement && MainElement}
+              {MainElement && <MainElement musicList ={musicList} />}
           </div>
             
 
